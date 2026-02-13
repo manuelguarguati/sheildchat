@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="description" content="Shield Chat - Admin Panel">
+  <title>Shield Chat - Admin Panel</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body>
+  <div class="admin-container">
+    <aside class="admin-sidebar">
+      <div class="admin-logo">
+        <svg viewBox="0 0 24 24" width="32" height="32">
+          <path fill="#4f46e5" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+        </svg>
+        <span>Shield Chat</span>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="#" class="nav-item active" data-section="dashboard">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="currentColor" d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+          </svg>
+          Dashboard
+        </a>
+        <a href="#" class="nav-item" data-section="users">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 1.17-0-7 7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+          </svg>
+          Users
+        </a>
+        <a href="#" class="nav-item" data-section="logs">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+          </svg>
+          Audit Logs
+        </a>
+      </nav>
+
+      <div class="admin-footer">
+        <a href="/chat" class="back-link">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+          </svg>
+          Back to Chat
+        </a>
+        <button class="logout-btn" id="logoutBtn">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="currentColor" d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+          </svg>
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <!-- Dashboard Section -->
+      <section class="admin-section active" id="dashboardSection">
+        <header class="admin-header">
+          <h1>Dashboard</h1>
+          <span class="current-date" id="currentDate"></span>
+        </header>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="totalUsers">0</span>
+              <span class="stat-label">Total Users</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="activeUsers">0</span>
+              <span class="stat-label">Active Users</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon purple">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="totalMessages">0</span>
+              <span class="stat-label">Total Messages</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon orange">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="unreadMessages">0</span>
+              <span class="stat-label">Unread Messages</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="card">
+            <header class="card-header">
+              <h3>Recent Activity</h3>
+            </header>
+            <div class="card-body">
+              <div class="activity-list" id="recentActivity">
+                <p class="empty-message">No recent activity</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <header class="card-header">
+              <h3>Quick Actions</h3>
+            </header>
+            <div class="card-body">
+              <button class="btn-primary" id="createUserBtn">Create User</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Users Section -->
+      <section class="admin-section" id="usersSection">
+        <header class="admin-header">
+          <h1>User Management</h1>
+          <button class="btn-primary" id="createUserBtn2">Create User</button>
+        </header>
+
+        <div class="filters-bar">
+          <input type="text" id="userSearch" placeholder="Search users...">
+          <select id="roleFilter">
+            <option value="">All Roles</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+          </select>
+          <select id="activeFilter">
+            <option value="">All Status</option>
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
+          </select>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <tr>
+                <td colspan="7" class="loading">Loading users...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination" id="usersPagination"></div>
+      </section>
+
+      <!-- Audit Logs Section -->
+      <section class="admin-section" id="logsSection">
+        <header class="admin-header">
+          <h1>Audit Logs</h1>
+        </header>
+
+        <div class="filters-bar">
+          <input type="text" id="logSearch" placeholder="Search actions...">
+          <select id="actionFilter">
+            <option value="">All Actions</option>
+            <option value="LOGIN">LOGIN</option>
+            <option value="LOGOUT">LOGOUT</option>
+            <option value="CREATE_USER">CREATE_USER</option>
+            <option value="SEND_MESSAGE">SEND_MESSAGE</option>
+          </select>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Action</th>
+                <th>Status</th>
+                <th>IP Address</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody id="logsTableBody">
+              <tr>
+                <td colspan="6" class="loading">Loading logs...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination" id="logsPagination"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Create User Modal -->
+  <div class="modal" id="createUserModal" style="display: none;">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h3>Create New User</h3>
+        <button class="close-btn" id="closeModalBtn">&times;</button>
+      </header>
+      <form id="createUserForm">
+        <div class="form-group">
+          <label for="newUsername">Username *</label>
+          <input type="text" id="newUsername" required>
+        </div>
+        <div class="form-group">
+          <label for="newEmail">Email</label>
+          <input type="email" id="newEmail">
+        </div>
+        <div class="form-group">
+          <label for="newPassword">Password *</label>
+          <input type="password" id="newPassword" required minlength="8">
+        </div>
+        <div class="form-group">
+          <label for="newRole">Role</label>
+          <select id="newRole">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="newFirstName">First Name</label>
+          <input type="text" id="newFirstName">
+        </div>
+        <div class="form-group">
+          <label for="newLastName">Last Name</label>
+          <input type="text" id="newLastName">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" id="cancelModalBtn">Cancel</button>
+          <button type="submit" class="btn-primary">Create User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/admin.js"></script>
+  <script src="/js/service-worker.js" defer></script>
+</body>
+</html>

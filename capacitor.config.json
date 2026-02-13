@@ -1,0 +1,65 @@
+{
+  "appId": "com.securecorp.shieldchat",
+  "appName": "Shield Chat",
+  "webDir": "public",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "linuxAndroidStudioPath": "/opt/android-studio/bin/studio.sh",
+  "windowsAndroidStudioPath": "C:\\Program Files\\Android\\Android Studio\\bin\\studio64.exe",
+  "allowMixedContent": true,
+  "android": {
+    "allowMixedContent": true,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": true,
+    "buildOptions": {
+      "keystore": "release.keystore",
+      "keystoreAlias": "shieldchat"
+    }
+  },
+  "ios": {
+    "content": {
+      "swiftVersion": "5.0"
+    },
+    "cordovaSwiftVersioning": {
+      "minVersion": "5.0"
+    }
+  },
+  "server": {
+    "url": "http://localhost:3000",
+    "cleartext": true
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 3000,
+      "launchAutoHide": true,
+      "androidScaleType": "CENTER_CROP",
+      "androidSpinnerStyle": "large",
+      "iosSpinnerStyle": "small",
+      "spinnerColor": "#4f46e5",
+      "showSpinner": true
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "overlaysWebView": false,
+      "backgroundColor": "#1a1a2e"
+    }
+  },
+  "cordova": {
+    "preferences": {
+      "ScrollEnabled": "true",
+      "DisallowOverscroll": "true",
+      "Orientation": "portrait",
+      "BackgroundColor": "0xffffffff",
+      "ShowSplashScreen": "true",
+      "SplashScreenDelay": "3000",
+      "FadeSplashScreen": "true",
+      "FadeSplashScreenDuration": "300",
+      "SplashScreenAndroid": "screen",
+      "SplashScreenAndroidBackgroundColor": "#1a1a2e",
+      "SplashScreenShowSpinner": "true",
+      "SplashScreenSpinnerColor": "#4f46e5",
+      "KeepRunning": "true",
+      "SplashMaintainAspectRatio": "true"
+    }
+  }
+}
