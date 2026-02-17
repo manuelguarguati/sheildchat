@@ -124,23 +124,8 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Root endpoint - Returns JSON
-app.get('/', (req, res) => {
-  res.json({
-    success: true,
-    message: 'SecureCorp Chat API',
-    version: '1.0.0',
-    endpoints: {
-      health: '/api/health',
-      auth: '/api/auth',
-      messages: '/api/messages',
-      users: '/api/users',
-      friends: '/api/friends',
-      admin: '/api/admin'
-    },
-    timestamp: new Date().toISOString()
-  });
-});
+// Root endpoint - Serve frontend (SPA fallback)
+// Note: The catch-all route at the end handles this now
 
 // ======================
 // FRONTEND ROUTES
@@ -158,12 +143,15 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
-// 404 handler
+// Catch-all route for SPA - Serve index.html for non-API routes
+// This must be AFTER all API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// 404 handler - Only reached if file not found
 app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    message: 'Endpoint not found'
-  });
+  res.status(404).sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Global error handler
